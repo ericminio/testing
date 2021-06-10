@@ -22,9 +22,9 @@ public class CartDao implements Cart {
 
     public int size() {
         try {
-            return database.selectInt(format("select count(1) from cart where customer_id=%d", customer_id));
+            return database.selectInt(format("select count(1) from cart where customer_id = %d", customer_id));
         } catch (SQLException e) {
-            throw new RuntimeException(format("request failed for customer %d", customer_id));
+            throw new RuntimeException(format("request failed for values %d", customer_id));
         }
     }
 

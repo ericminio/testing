@@ -18,9 +18,7 @@ public class Database {
         statement.execute();
     }
     public void executeIgnoringErrors(String sql) {
-        try {
-            execute(sql);
-        }
+        try { execute(sql); }
         catch (Exception ignored) {}
     }
 
