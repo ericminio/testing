@@ -1,5 +1,6 @@
 package ericminio.storage.support;
 
+import ericminio.Gate;
 import ericminio.Scope;
 import ericminio.domain.StorageFacade;
 import ericminio.storage.adapters.Database;
@@ -23,6 +24,11 @@ public class StorageTest implements Scope {
         StorageFacade storageFacade = new StorageFacade();
         storageFacade.setRepository(new RepositoryUsingDatabase(inMemoryDatabase()));
         return storageFacade;
+    }
+
+    @Override
+    public Gate gate() {
+        return null;
     }
 
     protected Database inMemoryDatabase() {

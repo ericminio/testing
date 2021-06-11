@@ -34,7 +34,8 @@ public class RepositoryUsingDatabase implements Repository {
             return customer;
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }    }
+        }
+    }
 
     public Database getDatabase() {
         return database;
