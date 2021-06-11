@@ -18,7 +18,7 @@ public class CartRepositoryUsingMap implements CartRepository {
     }
 
     @Override
-    public ShoppingCart findByCustomer(Customer customer) {
+    public ShoppingCart find(Customer customer) {
         return carts.get(customer);
     }
 }

@@ -3,7 +3,7 @@ package ericminio.ports;
 import ericminio.domain.Customer;
 
 public interface CustomerRepository {
-    void create(Customer customer);
+    void save(Customer customer);
 
-    Customer findOneByName(String name);
+    Customer find(String name);
 }

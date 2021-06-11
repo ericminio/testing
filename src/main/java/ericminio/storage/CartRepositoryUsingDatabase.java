@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 import static java.lang.String.format;
 
-public class CarRepositoryUsingDatabase implements CartRepository {
+public class CartRepositoryUsingDatabase implements CartRepository {
     private Database database;
 
-    public CarRepositoryUsingDatabase(Database database) {
+    public CartRepositoryUsingDatabase(Database database) {
         this.database = database;
     }
 
@@ -32,7 +32,7 @@ public class CarRepositoryUsingDatabase implements CartRepository {
     }
 
     @Override
-    public ShoppingCart findByCustomer(Customer customer) {
+    public ShoppingCart find(Customer customer) {
         try {
             ShoppingCart shoppingCart = new ShoppingCart();
             ResultSet resultSet = database.selectRows(format("" +

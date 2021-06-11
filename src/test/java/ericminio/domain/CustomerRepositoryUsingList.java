@@ -15,12 +15,12 @@ public class CustomerRepositoryUsingList implements CustomerRepository {
     }
 
     @Override
-    public void create(Customer customer) {
+    public void save(Customer customer) {
         customers.add(customer);
     }
 
     @Override
-    public Customer findOneByName(String name) {
+    public Customer find(String name) {
         for (Customer candidate:customers) {
             if (name.equalsIgnoreCase(candidate.getName())) {
                 return candidate;

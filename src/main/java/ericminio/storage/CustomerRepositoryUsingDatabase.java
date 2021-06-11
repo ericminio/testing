@@ -16,7 +16,7 @@ public class CustomerRepositoryUsingDatabase implements CustomerRepository {
     }
 
     @Override
-    public void create(Customer customer) {
+    public void save(Customer customer) {
         try {
             int id = database.selectInt("call next value for customer_id_sequence");
             database.execute(format("insert into customer(id, name) values(%d, '%s')", id, customer.getName()));
@@ -26,7 +26,7 @@ public class CustomerRepositoryUsingDatabase implements CustomerRepository {
     }
 
     @Override
-    public Customer findOneByName(String name) {
+    public Customer find(String name) {
         try {
             database.selectInt(format("select id from customer where name = '%s'", name));
             return new Customer(name);

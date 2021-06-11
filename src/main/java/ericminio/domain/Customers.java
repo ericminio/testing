@@ -16,13 +16,13 @@ public class Customers {
     }
 
     public void save(Customer customer) {
-        customerRepository.create(customer);
+        customerRepository.save(customer);
         cartRepository.save(customer);
     }
 
     public Customer findByName(String name) {
-        Customer customer = customerRepository.findOneByName(name);
-        ShoppingCart shoppingCart = cartRepository.findByCustomer(customer);
+        Customer customer = customerRepository.find(name);
+        ShoppingCart shoppingCart = cartRepository.find(customer);
         customer.setShoppingCart(shoppingCart);
 
         return customer;

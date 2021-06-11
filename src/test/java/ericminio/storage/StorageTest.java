@@ -18,7 +18,7 @@ public class StorageTest implements TestContext {
     public Customers getCustomers() {
         Customers customers = new Customers();
         customers.setCustomerRepository(new CustomerRepositoryUsingDatabase(getDatabase()));
-        customers.setCartRepository(new CarRepositoryUsingDatabase(getDatabase()));
+        customers.setCartRepository(new CartRepositoryUsingDatabase(getDatabase()));
         return customers;
     }
 
