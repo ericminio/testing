@@ -11,7 +11,7 @@ public class ApiTest extends StorageTest {
 
     public ApiTest() {
         if (server == null) {
-            server = new Server(port, storageFacade());
+            server = new Server(port, getStorageFacade());
             server.start();
         }
     }

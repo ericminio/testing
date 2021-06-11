@@ -3,13 +3,15 @@ package ericminio.domain.support;
 import ericminio.Gate;
 import ericminio.domain.Customer;
 import ericminio.domain.StorageFacade;
+import ericminio.storage.adapters.RepositoryUsingMap;
 
 public class DomainGate implements Gate {
 
-    private StorageFacade storageFacade;
+    protected StorageFacade storageFacade;
 
-    public DomainGate(StorageFacade storageFacade) {
-        this.storageFacade = storageFacade;
+    public DomainGate() {
+        this.storageFacade = new StorageFacade();
+        storageFacade.setRepository(new RepositoryUsingMap());
     }
 
     @Override
