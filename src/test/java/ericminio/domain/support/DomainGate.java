@@ -10,8 +10,16 @@ public class DomainGate implements Gate {
     protected StorageFacade storageFacade;
 
     public DomainGate() {
-        this.storageFacade = new StorageFacade();
+        StorageFacade storageFacade = new StorageFacade();
         storageFacade.setRepository(new RepositoryUsingMap());
+        this.setStorageFacade(storageFacade);
+    }
+
+    public void setStorageFacade(StorageFacade storageFacade) {
+        this.storageFacade = storageFacade;
+    }
+    public StorageFacade getStorageFacade() {
+        return this.storageFacade;
     }
 
     @Override

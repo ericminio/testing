@@ -4,7 +4,6 @@ import ericminio.Gate;
 import ericminio.Scope;
 import ericminio.domain.StorageFacade;
 import ericminio.storage.adapters.Database;
-import ericminio.storage.adapters.RepositoryUsingDatabase;
 import ericminio.storage.migrations.CreateAll;
 
 import java.sql.Connection;
@@ -12,23 +11,22 @@ import java.sql.DriverManager;
 
 public class StorageTest implements Scope {
 
+    private StorageGate storageGate;
     private Database database;
-    private StorageFacade storageFacade;
 
     public StorageTest() {
         DropAll.now(inMemoryDatabase());
         CreateAll.now(inMemoryDatabase());
-        this.storageFacade = new StorageFacade();
-        this.storageFacade.setRepository(new RepositoryUsingDatabase(inMemoryDatabase()));
+        this.storageGate = new StorageGate(inMemoryDatabase());
     }
 
     @Override
     public Gate gate() {
-        return new StorageGate(getStorageFacade());
+        return storageGate;
     }
 
     protected StorageFacade getStorageFacade() {
-        return this.storageFacade;
+        return this.storageGate.getStorageFacade();
     }
 
     protected Database inMemoryDatabase() {
