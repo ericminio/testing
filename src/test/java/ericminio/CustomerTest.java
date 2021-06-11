@@ -1,12 +1,10 @@
 package ericminio;
 
-import ericminio.domain.CartLimitReached;
 import ericminio.domain.Customer;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -40,15 +38,15 @@ public abstract class CustomerTest {
     @Test
     public void cartIsLimitedToThreeItems() {
         Customer alice = gate.find("alice");
-        alice.chooses("item-1");
-        alice.chooses("item-2");
-        alice.chooses("item-3");
+        gate.acceptChoice(alice, "item-1");
+        gate.acceptChoice(alice, "item-2");
+        gate.acceptChoice(alice, "item-3");
         try {
-            alice.chooses("item-4");
+            gate.acceptChoice(alice, "item-4");
             fail();
         }
         catch (Exception raised) {
-            assertThat(raised, instanceOf(CartLimitReached.class));
+            assertThat(raised.getMessage(), equalTo("cart size limit reached"));
         }
     }
 }

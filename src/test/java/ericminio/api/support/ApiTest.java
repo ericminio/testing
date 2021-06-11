@@ -18,6 +18,6 @@ public class ApiTest extends StorageTest {
 
     @Override
     public Gate gate() {
-        return new ApiGate(port, storageFacade());
+        return new ApiGate(port);
     }
 }
