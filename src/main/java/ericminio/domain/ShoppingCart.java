@@ -1,11 +1,9 @@
 package ericminio.domain;
 
-import ericminio.ports.Cart;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart implements Cart {
+public class ShoppingCart {
 
     List<String> items;
 
@@ -13,12 +11,15 @@ public class ShoppingCart implements Cart {
         this.items = new ArrayList<>();
     }
 
-    @Override
     public void add(String label) {
         this.items.add(label);
     }
 
     public int size() {
         return this.items.size();
+    }
+
+    public String get(int i) {
+        return items.get(i);
     }
 }

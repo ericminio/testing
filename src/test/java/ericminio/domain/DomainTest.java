@@ -1,12 +1,14 @@
 package ericminio.domain;
 
 import ericminio.TestContext;
-import ericminio.ports.Visitor;
 
 public class DomainTest implements TestContext {
 
     @Override
-    public Visitor newVisitor(String name) {
-        return new Customer(name);
+    public Customers getCustomers() {
+        Customers customers = new Customers();
+        customers.setCustomerRepository(new CustomerRepositoryUsingList());
+        customers.setCartRepository(new CartRepositoryUsingMap());
+        return customers;
     }
 }

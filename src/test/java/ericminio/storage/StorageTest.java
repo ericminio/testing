@@ -1,25 +1,25 @@
 package ericminio.storage;
 
 import ericminio.TestContext;
-import ericminio.ports.Visitor;
+import ericminio.domain.Customers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class StorageTest implements TestContext {
 
-    private final VisitorRepository visitorRepository;
     private Database database;
 
     public StorageTest() {
-        this.visitorRepository = new VisitorRepository(getDatabase());
         clean();
     }
 
     @Override
-    public Visitor newVisitor(String name) {
-        int id = visitorRepository.createNew(name);
-        return visitorRepository.findBy(id);
+    public Customers getCustomers() {
+        Customers customers = new Customers();
+        customers.setCustomerRepository(new CustomerRepositoryUsingDatabase(getDatabase()));
+        customers.setCartRepository(new CarRepositoryUsingDatabase(getDatabase()));
+        return customers;
     }
 
     protected Database getDatabase() {

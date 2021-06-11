@@ -1,8 +1,8 @@
 package ericminio;
 
-import ericminio.ports.Visitor;
+import ericminio.domain.Customers;
 
 public interface TestContext {
 
-    Visitor newVisitor(String name);
+    Customers getCustomers();
 }

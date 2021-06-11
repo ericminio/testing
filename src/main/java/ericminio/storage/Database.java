@@ -30,11 +30,8 @@ public class Database {
         return resultSet.getInt(1);
     }
 
-    public String selectString(String sql) throws SQLException {
+    public ResultSet selectRows(String sql) throws SQLException {
         CallableStatement statement = connection.prepareCall(sql);
-        ResultSet resultSet = statement.executeQuery();
-        resultSet.next();
-
-        return resultSet.getString(1);
+        return statement.executeQuery();
     }
 }

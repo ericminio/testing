@@ -1,9 +1,6 @@
 package ericminio.domain;
 
-import ericminio.ports.Visitor;
-
-public class Customer implements Visitor {
-
+public class Customer {
     private ShoppingCart shoppingCart;
     private String name;
 
@@ -12,22 +9,23 @@ public class Customer implements Visitor {
         this.shoppingCart = new ShoppingCart();
     }
 
-    @Override
+    public ShoppingCart getShoppingCart() {
+        return this.shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
     public int getCartSize() {
         return this.shoppingCart.size();
     }
 
-    @Override
     public void chooses(String label) {
         this.shoppingCart.add(label);
     }
 
-    @Override
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
