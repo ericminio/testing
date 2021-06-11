@@ -1,6 +1,7 @@
-package ericminio.domain;
+package ericminio.storage.adapters;
 
-import ericminio.ports.CustomerRepository;
+import ericminio.domain.Customer;
+import ericminio.storage.CustomerRepository;
 
 import java.util.ArrayList;
 import java.util.List;

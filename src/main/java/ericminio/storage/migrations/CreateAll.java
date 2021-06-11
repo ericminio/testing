@@ -1,13 +1,10 @@
-package ericminio.storage;
+package ericminio.storage.migrations;
 
-public class Structure {
-    private Database database;
+import ericminio.storage.adapters.Database;
 
-    public Structure(Database database) {
-        this.database = database;
-    }
+public class CreateAll {
 
-    public void now() {
+    public static void now(Database database) {
         try {
             database.execute("create table customer(id int, name varchar(15))");
             database.execute("create sequence customer_id_sequence");

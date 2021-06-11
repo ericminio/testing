@@ -1,8 +1,8 @@
-package ericminio.storage;
+package ericminio.storage.adapters;
 
 import ericminio.domain.Customer;
 import ericminio.domain.Cart;
-import ericminio.ports.CartRepository;
+import ericminio.storage.CartRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,6 +1,7 @@
-package ericminio.storage;
+package ericminio.storage.adapters;
 
 import ericminio.domain.Customer;
+import ericminio.storage.support.StorageTest;
 import org.junit.Before;
 import org.junit.Test;
 

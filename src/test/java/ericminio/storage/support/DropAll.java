@@ -1,13 +1,10 @@
-package ericminio.storage;
+package ericminio.storage.support;
 
-public class Drop {
-    private Database database;
+import ericminio.storage.adapters.Database;
 
-    public Drop(Database database) {
-        this.database = database;
-    }
+public class DropAll {
 
-    public void now() {
+    public static void now(Database database) {
         database.executeIgnoringErrors("drop table customer");
         database.executeIgnoringErrors("drop table cart");
         database.executeIgnoringErrors("drop sequence customer_id_sequence");

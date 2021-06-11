@@ -1,6 +1,8 @@
-package ericminio.domain;
+package ericminio.storage.adapters;
 
-import ericminio.ports.CartRepository;
+import ericminio.domain.Cart;
+import ericminio.domain.Customer;
+import ericminio.storage.CartRepository;
 
 import java.util.HashMap;
 import java.util.Map;

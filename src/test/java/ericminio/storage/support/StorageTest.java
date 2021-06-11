@@ -1,7 +1,11 @@
-package ericminio.storage;
+package ericminio.storage.support;
 
 import ericminio.Scope;
 import ericminio.domain.Customers;
+import ericminio.storage.adapters.CartRepositoryUsingDatabase;
+import ericminio.storage.adapters.CustomerRepositoryUsingDatabase;
+import ericminio.storage.adapters.Database;
+import ericminio.storage.migrations.CreateAll;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +15,8 @@ public class StorageTest implements Scope {
     private Database database;
 
     public StorageTest() {
-        new Drop(inMemoryDatabase()).now();
-        new Structure(inMemoryDatabase()).now();
+        DropAll.now(inMemoryDatabase());
+        CreateAll.now(inMemoryDatabase());
     }
 
     @Override

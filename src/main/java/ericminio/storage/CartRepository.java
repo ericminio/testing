@@ -1,4 +1,4 @@
-package ericminio.ports;
+package ericminio.storage;
 
 import ericminio.domain.Customer;
 import ericminio.domain.Cart;

@@ -1,11 +1,13 @@
 package ericminio;
 
+import ericminio.domain.CartLimitReached;
 import ericminio.domain.Customer;
 import ericminio.domain.Customers;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -47,8 +49,8 @@ public abstract class CustomerTest {
             alice.chooses("item-4");
             fail();
         }
-        catch (Exception e) {
-            assertThat(e.getMessage(), equalTo("cart size limit reached"));
+        catch (Exception raised) {
+            assertThat(raised, instanceOf(CartLimitReached.class));
         }
     }
 }

@@ -1,7 +1,7 @@
-package ericminio.storage;
+package ericminio.storage.adapters;
 
 import ericminio.domain.Customer;
-import ericminio.ports.CustomerRepository;
+import ericminio.storage.CustomerRepository;
 
 import java.sql.SQLException;
 

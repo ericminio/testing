@@ -1,7 +1,7 @@
 package ericminio.domain;
 
-import ericminio.ports.CartRepository;
-import ericminio.ports.CustomerRepository;
+import ericminio.storage.CartRepository;
+import ericminio.storage.CustomerRepository;
 
 public class Customers {
     private CustomerRepository customerRepository;

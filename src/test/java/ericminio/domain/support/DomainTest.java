@@ -1,6 +1,9 @@
-package ericminio.domain;
+package ericminio.domain.support;
 
 import ericminio.Scope;
+import ericminio.domain.Customers;
+import ericminio.storage.adapters.CartRepositoryUsingMap;
+import ericminio.storage.adapters.CustomerRepositoryUsingList;
 
 public class DomainTest implements Scope {
 
