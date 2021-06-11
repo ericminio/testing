@@ -18,8 +18,8 @@ public class StorageTest implements Scope {
     @Override
     public Customers customers() {
         Customers customers = new Customers();
-        customers.setCustomerRepository(new CustomerRepositoryUsing(inMemoryDatabase()));
-        customers.setCartRepository(new CartRepositoryUsing(inMemoryDatabase()));
+        customers.setCustomerRepository(new CustomerRepositoryUsingDatabase(inMemoryDatabase()));
+        customers.setCartRepository(new CartRepositoryUsingDatabase(inMemoryDatabase()));
         return customers;
     }
 

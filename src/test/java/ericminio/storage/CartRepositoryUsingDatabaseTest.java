@@ -8,12 +8,12 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-public class CartRepositoryUsingTest extends StorageTest {
-    CartRepositoryUsing cartRepositoryUsing;
+public class CartRepositoryUsingDatabaseTest extends StorageTest {
+    CartRepositoryUsingDatabase cartRepositoryUsingDatabase;
 
     @Before
     public void sut() {
-        cartRepositoryUsing = new CartRepositoryUsing(inMemoryDatabase());
+        cartRepositoryUsingDatabase = new CartRepositoryUsingDatabase(inMemoryDatabase());
     }
 
     @Test
@@ -21,8 +21,8 @@ public class CartRepositoryUsingTest extends StorageTest {
         try {
             Customer ed = new Customer("ed");
             ed.chooses("this too long label will be rejected");
-            new CustomerRepositoryUsing(inMemoryDatabase()).save(ed);
-            cartRepositoryUsing.save(ed);
+            new CustomerRepositoryUsingDatabase(inMemoryDatabase()).save(ed);
+            cartRepositoryUsingDatabase.save(ed);
             fail();
         }
         catch (Exception creating) {

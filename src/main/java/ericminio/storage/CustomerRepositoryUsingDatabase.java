@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 import static java.lang.String.format;
 
-public class CustomerRepositoryUsing implements CustomerRepository {
+public class CustomerRepositoryUsingDatabase implements CustomerRepository {
 
     private Database database;
 
-    public CustomerRepositoryUsing(Database database) {
+    public CustomerRepositoryUsingDatabase(Database database) {
         this.database = database;
     }
 
