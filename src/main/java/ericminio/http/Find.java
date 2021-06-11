@@ -29,7 +29,6 @@ public class Find implements HttpHandler {
             exchange.close();
         }
         catch (Exception e) {
-            e.printStackTrace();
             exchange.getResponseHeaders().add("content-type", "text/plain");
             exchange.sendResponseHeaders(500, e.getMessage().length());
             exchange.getResponseBody().write(e.getMessage().getBytes());
