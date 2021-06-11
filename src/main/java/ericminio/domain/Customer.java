@@ -26,6 +26,9 @@ public class Customer {
     }
 
     public void chooses(String label) {
+        if (getCartSize() == 3) {
+            throw new CartLimitReached();
+        }
         this.cart.add(label);
     }
 }
