@@ -3,6 +3,7 @@ package ericminio.storage.support;
 import ericminio.Gate;
 import ericminio.Scope;
 import ericminio.domain.StorageFacade;
+import ericminio.domain.support.DomainGate;
 import ericminio.storage.adapters.Database;
 import ericminio.storage.adapters.RepositoryUsingDatabase;
 import ericminio.storage.migrations.CreateAll;
@@ -28,7 +29,7 @@ public class StorageTest implements Scope {
 
     @Override
     public Gate gate() {
-        return null;
+        return new DomainGate(storageFacade());
     }
 
     protected Database inMemoryDatabase() {

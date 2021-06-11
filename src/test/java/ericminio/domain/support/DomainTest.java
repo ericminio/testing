@@ -16,6 +16,6 @@ public class DomainTest implements Scope {
 
     @Override
     public Gate gate() {
-        return null;
+        return new DomainGate(storageFacade());
     }
 }

@@ -2,7 +2,6 @@ package ericminio;
 
 import ericminio.domain.CartLimitReached;
 import ericminio.domain.Customer;
-import ericminio.domain.StorageFacade;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,34 +12,34 @@ import static org.junit.Assert.fail;
 
 public abstract class CustomerTest {
     protected abstract Scope scoped();
-    private StorageFacade storageFacade;
+    private Gate gate;
 
     @Before
     public void newCustomers() {
-        storageFacade = scoped().storageFacade();
-        storageFacade.save(new Customer("alice"));
+        gate = scoped().gate();
+        gate.save(new Customer("alice"));
     }
 
     @Test
     public void startWithEmptyCart() {
-        Customer alice = storageFacade.find("alice");
+        Customer alice = gate.find("alice");
 
         assertThat(alice.getCartSize(), equalTo(0));
     }
 
     @Test
     public void canAddItemsToTheirCart() {
-        Customer alice = storageFacade.find("alice");
-        alice.chooses("this-item");
-        alice.chooses("this-other-item");
+        Customer alice = gate.find("alice");
+        gate.acceptChoice(alice, "this-item");
+        gate.acceptChoice(alice, "this-other-item");
 
-        alice = storageFacade.find("alice");
+        alice = gate.find("alice");
         assertThat(alice.getCartSize(), equalTo(2));
     }
 
     @Test
     public void cartIsLimitedToThreeItems() {
-        Customer alice = storageFacade.find("alice");
+        Customer alice = gate.find("alice");
         alice.chooses("item-1");
         alice.chooses("item-2");
         alice.chooses("item-3");

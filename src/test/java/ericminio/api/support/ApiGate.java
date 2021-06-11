@@ -45,6 +45,5 @@ public class ApiGate implements Gate {
     @Override
     public void acceptChoice(Customer customer, String label) {
         customer.chooses(label);
-        save(customer);
     }
 }
