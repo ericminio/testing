@@ -5,16 +5,18 @@ import ericminio.storage.support.StorageTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.SQLException;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-public class CartRepositoryUsingDatabaseTest extends StorageTest {
-    CartRepositoryUsingDatabase cartRepositoryUsingDatabase;
+public class RepositoryUsingDatabaseTest extends StorageTest {
+    RepositoryUsingDatabase repositoryUsingDatabase;
 
     @Before
     public void sut() {
-        cartRepositoryUsingDatabase = new CartRepositoryUsingDatabase(inMemoryDatabase());
+        repositoryUsingDatabase = new RepositoryUsingDatabase(inMemoryDatabase());
     }
 
     @Test
@@ -22,13 +24,22 @@ public class CartRepositoryUsingDatabaseTest extends StorageTest {
         try {
             Customer ed = new Customer("ed");
             ed.chooses("this too long label will be rejected");
-            new CustomerRepositoryUsingDatabase(inMemoryDatabase()).save(ed);
-            cartRepositoryUsingDatabase.save(ed);
+            repositoryUsingDatabase.save(ed);
             fail();
         }
         catch (Exception creating) {
             assertThat(creating.getCause().getMessage(),
                     equalTo("data exception: string data, right truncation;  table: CART column: LABEL"));
         }
+    }
+
+    @Test
+    public void customerSaveDoesNotDuplicateCustomer() throws SQLException {
+        Customer ed = new Customer("ed");
+        repositoryUsingDatabase.save(ed);
+        repositoryUsingDatabase.save(ed);
+        int count = repositoryUsingDatabase.getDatabase().selectInt("select count(1) from customer");
+
+        assertThat(count, equalTo(1));
     }
 }

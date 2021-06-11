@@ -1,10 +1,9 @@
 package ericminio.storage;
 
 import ericminio.domain.Customer;
-import ericminio.domain.Cart;
 
-public interface CartRepository {
+public interface Repository {
     void save(Customer customer);
 
-    Cart find(Customer customer);
+    Customer find(String name);
 }

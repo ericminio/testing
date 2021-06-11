@@ -33,4 +33,10 @@ public class Database {
         CallableStatement statement = connection.prepareCall(sql);
         return statement.executeQuery();
     }
+
+    public boolean exists(String sql) throws SQLException {
+        CallableStatement statement = connection.prepareCall(sql);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    }
 }

@@ -1,10 +1,9 @@
 package ericminio.storage.support;
 
 import ericminio.Scope;
-import ericminio.domain.Customers;
-import ericminio.storage.adapters.CartRepositoryUsingDatabase;
-import ericminio.storage.adapters.CustomerRepositoryUsingDatabase;
+import ericminio.domain.StorageFacade;
 import ericminio.storage.adapters.Database;
+import ericminio.storage.adapters.RepositoryUsingDatabase;
 import ericminio.storage.migrations.CreateAll;
 
 import java.sql.Connection;
@@ -20,11 +19,10 @@ public class StorageTest implements Scope {
     }
 
     @Override
-    public Customers customers() {
-        Customers customers = new Customers();
-        customers.setCustomerRepository(new CustomerRepositoryUsingDatabase(inMemoryDatabase()));
-        customers.setCartRepository(new CartRepositoryUsingDatabase(inMemoryDatabase()));
-        return customers;
+    public StorageFacade storageFacade() {
+        StorageFacade storageFacade = new StorageFacade();
+        storageFacade.setRepository(new RepositoryUsingDatabase(inMemoryDatabase()));
+        return storageFacade;
     }
 
     protected Database inMemoryDatabase() {

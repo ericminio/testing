@@ -3,6 +3,7 @@ package ericminio.domain;
 public class Customer {
     private String name;
     private Cart cart;
+    private StorageFacade storageFacade;
 
     public Customer(String name) {
         this.name = name;
@@ -30,5 +31,12 @@ public class Customer {
             throw new CartLimitReached();
         }
         this.cart.add(label);
+        if (this.storageFacade != null) {
+            this.storageFacade.save(this);
+        }
+    }
+
+    public void setStorageFacade(StorageFacade storageFacade) {
+        this.storageFacade = storageFacade;
     }
 }

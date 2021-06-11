@@ -1,8 +1,8 @@
 package ericminio;
 
-import ericminio.domain.Customers;
+import ericminio.domain.StorageFacade;
 
 public interface Scope {
 
-    Customers customers();
+    StorageFacade storageFacade();
 }
