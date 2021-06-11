@@ -1,12 +1,12 @@
 package ericminio.domain.support;
 
-import ericminio.Gate;
+import ericminio.Interactions;
 import ericminio.Scope;
 
 public class DomainTest implements Scope {
 
     @Override
-    public Gate gate() {
-        return new DomainGate();
+    public Interactions interactions() {
+        return new DomainInteractions();
     }
 }

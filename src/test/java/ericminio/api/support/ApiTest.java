@@ -1,6 +1,6 @@
 package ericminio.api.support;
 
-import ericminio.Gate;
+import ericminio.Interactions;
 import ericminio.http.Server;
 import ericminio.storage.support.StorageTest;
 
@@ -17,7 +17,7 @@ public class ApiTest extends StorageTest {
     }
 
     @Override
-    public Gate gate() {
-        return new ApiGate(port);
+    public Interactions interactions() {
+        return new ApiInteractions(port);
     }
 }

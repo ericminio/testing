@@ -1,6 +1,6 @@
 package ericminio.storage.support;
 
-import ericminio.Gate;
+import ericminio.Interactions;
 import ericminio.Scope;
 import ericminio.domain.StorageFacade;
 import ericminio.storage.adapters.Database;
@@ -11,17 +11,17 @@ import java.sql.DriverManager;
 
 public class StorageTest implements Scope {
 
-    private StorageGate storageGate;
+    private StorageInteractions storageGate;
     private Database database;
 
     public StorageTest() {
         DropAll.now(inMemoryDatabase());
         CreateAll.now(inMemoryDatabase());
-        this.storageGate = new StorageGate(inMemoryDatabase());
+        this.storageGate = new StorageInteractions(inMemoryDatabase());
     }
 
     @Override
-    public Gate gate() {
+    public Interactions interactions() {
         return storageGate;
     }
 

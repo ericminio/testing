@@ -1,6 +1,6 @@
 package ericminio.api.support;
 
-import ericminio.Gate;
+import ericminio.Interactions;
 import ericminio.domain.Customer;
 import ericminio.http.mapping.CustomerToJson;
 import ericminio.http.mapping.JsonToCustomer;
@@ -13,10 +13,10 @@ import static ericminio.api.support.GetRequest.get;
 import static ericminio.api.support.PostRequest.post;
 import static java.lang.String.format;
 
-public class ApiGate implements Gate {
+public class ApiInteractions implements Interactions {
     private int port;
 
-    public ApiGate(int port) {
+    public ApiInteractions(int port) {
         this.port = port;
     }
 

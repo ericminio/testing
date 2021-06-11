@@ -10,16 +10,16 @@ import static org.junit.Assert.fail;
 
 public abstract class CustomerTest {
     protected abstract Scope scoped();
-    private Gate please;
+    private Interactions please;
 
     @Before
-    public void newCustomers() {
-        please = scoped().gate();
+    public void aNewCustomer() {
+        please = scoped().interactions();
         please.save(new Customer("alice"));
     }
 
     @Test
-    public void startWithEmptyCart() {
+    public void startsWithEmptyCart() {
         Customer alice = please.find("alice");
 
         assertThat(alice.getCartSize(), equalTo(0));
@@ -36,7 +36,7 @@ public abstract class CustomerTest {
     }
 
     @Test
-    public void cartIsLimitedToThreeItems() {
+    public void isLimitedToThreeItemsInCart() {
         Customer alice = please.find("alice");
         please.recordChoice(alice, "item-1");
         please.recordChoice(alice, "item-2");

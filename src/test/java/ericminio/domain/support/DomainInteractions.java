@@ -1,15 +1,15 @@
 package ericminio.domain.support;
 
-import ericminio.Gate;
+import ericminio.Interactions;
 import ericminio.domain.Customer;
 import ericminio.domain.StorageFacade;
 import ericminio.storage.adapters.RepositoryUsingMap;
 
-public class DomainGate implements Gate {
+public class DomainInteractions implements Interactions {
 
     protected StorageFacade storageFacade;
 
-    public DomainGate() {
+    public DomainInteractions() {
         StorageFacade storageFacade = new StorageFacade();
         storageFacade.setRepository(new RepositoryUsingMap());
         this.setStorageFacade(storageFacade);
