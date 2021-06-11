@@ -9,7 +9,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public abstract class CustomerTest {
-
     protected abstract Scope scoped();
     private Customers customers;
 

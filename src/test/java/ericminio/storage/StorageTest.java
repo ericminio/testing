@@ -11,18 +11,19 @@ public class StorageTest implements Scope {
     private Database database;
 
     public StorageTest() {
-        clean();
+        new Drop(inMemoryDatabase()).now();
+        new Structure(inMemoryDatabase()).now();
     }
 
     @Override
     public Customers customers() {
         Customers customers = new Customers();
-        customers.setCustomerRepository(new CustomerRepositoryUsingDatabase(getDatabase()));
-        customers.setCartRepository(new CartRepositoryUsingDatabase(getDatabase()));
+        customers.setCustomerRepository(new CustomerRepositoryUsing(inMemoryDatabase()));
+        customers.setCartRepository(new CartRepositoryUsing(inMemoryDatabase()));
         return customers;
     }
 
-    protected Database getDatabase() {
+    protected Database inMemoryDatabase() {
         if (this.database == null) {
             try {
                 Class.forName("org.hsqldb.jdbcDriver");
@@ -36,21 +37,4 @@ public class StorageTest implements Scope {
         return database;
     }
 
-    private void clean() {
-        try {
-            getDatabase().executeIgnoringErrors("drop table customer");
-            getDatabase().executeIgnoringErrors("drop table cart");
-            getDatabase().executeIgnoringErrors("drop sequence customer_id_sequence");
-            getDatabase().executeIgnoringErrors("drop sequence cart_id_sequence");
-
-            getDatabase().execute("create table customer(id int, name varchar(15))");
-            getDatabase().execute("create sequence customer_id_sequence");
-
-            getDatabase().execute("create table cart(id int, customer_id int, label varchar(15))");
-            getDatabase().execute("create sequence cart_id_sequence");
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

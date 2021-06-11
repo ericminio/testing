@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 import static java.lang.String.format;
 
-public class CartRepositoryUsingDatabase implements CartRepository {
+public class CartRepositoryUsing implements CartRepository {
     private Database database;
 
-    public CartRepositoryUsingDatabase(Database database) {
+    public CartRepositoryUsing(Database database) {
         this.database = database;
     }
 
