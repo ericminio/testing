@@ -11,7 +11,7 @@ public class CartRepositoryTest extends StorageTest {
     @Test
     public void LabelSizeLimitation() {
         try {
-            int customer_id = new VisitorRepository(getDatabase()).createNew();
+            int customer_id = new VisitorRepository(getDatabase()).createNew("any-name");
             new CartRepository(getDatabase()).createNew(customer_id, "this is a long label that will be rejected");
             fail();
         }

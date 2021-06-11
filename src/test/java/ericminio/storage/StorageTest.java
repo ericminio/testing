@@ -17,8 +17,8 @@ public class StorageTest implements TestContext {
     }
 
     @Override
-    public Visitor newVisitor() {
-        int id = visitorRepository.createNew();
+    public Visitor newVisitor(String name) {
+        int id = visitorRepository.createNew(name);
         return visitorRepository.findBy(id);
     }
 

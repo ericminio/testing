@@ -5,8 +5,10 @@ import ericminio.ports.Visitor;
 public class Customer implements Visitor {
 
     private ShoppingCart shoppingCart;
+    private String name;
 
-    public Customer() {
+    public Customer(String name) {
+        this.name = name;
         this.shoppingCart = new ShoppingCart();
     }
 
@@ -18,5 +20,14 @@ public class Customer implements Visitor {
     @Override
     public void chooses(String label) {
         this.shoppingCart.add(label);
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -15,7 +15,7 @@ public abstract class VisitorTest {
 
     @Before
     public void newVisitor() {
-        alice = getContext().newVisitor();
+        alice = getContext().newVisitor("Alice");
     }
 
     @Test

@@ -4,5 +4,5 @@ import ericminio.ports.Visitor;
 
 public interface TestContext {
 
-    Visitor newVisitor();
+    Visitor newVisitor(String name);
 }

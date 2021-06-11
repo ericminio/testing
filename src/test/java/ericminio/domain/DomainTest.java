@@ -6,7 +6,7 @@ import ericminio.ports.Visitor;
 public class DomainTest implements TestContext {
 
     @Override
-    public Visitor newVisitor() {
-        return new Customer();
+    public Visitor newVisitor(String name) {
+        return new Customer(name);
     }
 }

@@ -12,10 +12,9 @@ public class VisitorRepository {
         this.database = database;
     }
 
-    public int createNew() {
+    public int createNew(String name) {
         try {
             int id = database.selectInt("call next value for customer_id_sequence");
-            String name = "name-" + id;
             database.execute(format("insert into customer(id, name) values(%d, '%s')", id, name));
             return id;
         } catch (SQLException e) {
