@@ -7,5 +7,5 @@ public interface Gate {
 
     Customer find(String name);
 
-    void acceptChoice(Customer alice, String label);
+    void recordChoice(Customer alice, String label);
 }

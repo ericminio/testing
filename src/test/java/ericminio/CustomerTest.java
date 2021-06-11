@@ -10,39 +10,39 @@ import static org.junit.Assert.fail;
 
 public abstract class CustomerTest {
     protected abstract Scope scoped();
-    private Gate gate;
+    private Gate please;
 
     @Before
     public void newCustomers() {
-        gate = scoped().gate();
-        gate.save(new Customer("alice"));
+        please = scoped().gate();
+        please.save(new Customer("alice"));
     }
 
     @Test
     public void startWithEmptyCart() {
-        Customer alice = gate.find("alice");
+        Customer alice = please.find("alice");
 
         assertThat(alice.getCartSize(), equalTo(0));
     }
 
     @Test
     public void canAddItemsToTheirCart() {
-        Customer alice = gate.find("alice");
-        gate.acceptChoice(alice, "this-item");
-        gate.acceptChoice(alice, "this-other-item");
+        Customer alice = please.find("alice");
+        please.recordChoice(alice, "this-item");
+        please.recordChoice(alice, "this-other-item");
 
-        alice = gate.find("alice");
+        alice = please.find("alice");
         assertThat(alice.getCartSize(), equalTo(2));
     }
 
     @Test
     public void cartIsLimitedToThreeItems() {
-        Customer alice = gate.find("alice");
-        gate.acceptChoice(alice, "item-1");
-        gate.acceptChoice(alice, "item-2");
-        gate.acceptChoice(alice, "item-3");
+        Customer alice = please.find("alice");
+        please.recordChoice(alice, "item-1");
+        please.recordChoice(alice, "item-2");
+        please.recordChoice(alice, "item-3");
         try {
-            gate.acceptChoice(alice, "item-4");
+            please.recordChoice(alice, "item-4");
             fail();
         }
         catch (Exception raised) {

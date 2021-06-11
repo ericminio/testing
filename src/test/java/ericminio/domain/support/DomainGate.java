@@ -25,7 +25,7 @@ public class DomainGate implements Gate {
     }
 
     @Override
-    public void acceptChoice(Customer customer, String label) {
+    public void recordChoice(Customer customer, String label) {
         customer.chooses(label);
     }
 }

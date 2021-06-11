@@ -43,7 +43,7 @@ public class ApiGate implements Gate {
     }
 
     @Override
-    public void acceptChoice(Customer customer, String label) {
+    public void recordChoice(Customer customer, String label) {
         Map<String, Object> tree = new HashMap<>();
         tree.put("name", customer.getName());
         tree.put("label", label);
