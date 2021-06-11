@@ -1,5 +1,6 @@
 package ericminio.storage.adapters;
 
+import ericminio.domain.Cart;
 import ericminio.domain.Customer;
 import ericminio.storage.support.StorageTest;
 import org.junit.Before;
@@ -22,9 +23,9 @@ public class RepositoryUsingDatabaseTest extends StorageTest {
     @Test
     public void labelSizeLimitation() {
         try {
-            Customer ed = new Customer("ed");
-            ed.chooses("this too long label will be rejected");
-            repositoryUsingDatabase.save(ed);
+            Cart cart = new Cart();
+            cart.add("this too long label will be rejected");
+            repositoryUsingDatabase.save(new Customer("any name") {{ setCart(cart); }});
             fail();
         }
         catch (Exception creating) {

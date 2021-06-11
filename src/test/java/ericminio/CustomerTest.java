@@ -33,8 +33,8 @@ public abstract class CustomerTest {
         Customer alice = storageFacade.find("alice");
         alice.chooses("this-item");
         alice.chooses("this-other-item");
-        alice = storageFacade.find("alice");
 
+        alice = storageFacade.find("alice");
         assertThat(alice.getCartSize(), equalTo(2));
     }
 

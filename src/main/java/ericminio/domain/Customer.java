@@ -31,9 +31,7 @@ public class Customer {
             throw new CartLimitReached();
         }
         this.cart.add(label);
-        if (this.storageFacade != null) {
-            this.storageFacade.save(this);
-        }
+        this.storageFacade.save(this);
     }
 
     public void setStorageFacade(StorageFacade storageFacade) {
