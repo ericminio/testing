@@ -1,10 +1,10 @@
 package ericminio.ports;
 
 import ericminio.domain.Customer;
-import ericminio.domain.ShoppingCart;
+import ericminio.domain.Cart;
 
 public interface CartRepository {
     void save(Customer customer);
 
-    ShoppingCart find(Customer customer);
+    Cart find(Customer customer);
 }

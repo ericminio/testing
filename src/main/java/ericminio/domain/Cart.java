@@ -3,11 +3,11 @@ package ericminio.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
+public class Cart {
 
     List<String> items;
 
-    public ShoppingCart() {
+    public Cart() {
         this.items = new ArrayList<>();
     }
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CartRepositoryUsingMap implements CartRepository {
-    private Map<Customer, ShoppingCart> carts;
+    private Map<Customer, Cart> carts;
 
     public CartRepositoryUsingMap() {
         carts = new HashMap<>();
@@ -14,11 +14,11 @@ public class CartRepositoryUsingMap implements CartRepository {
 
     @Override
     public void save(Customer customer) {
-        carts.put(customer, customer.getShoppingCart());
+        carts.put(customer, customer.getCart());
     }
 
     @Override
-    public ShoppingCart find(Customer customer) {
+    public Cart find(Customer customer) {
         return carts.get(customer);
     }
 }

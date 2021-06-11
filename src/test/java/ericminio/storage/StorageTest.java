@@ -1,12 +1,12 @@
 package ericminio.storage;
 
-import ericminio.TestContext;
+import ericminio.Scope;
 import ericminio.domain.Customers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class StorageTest implements TestContext {
+public class StorageTest implements Scope {
 
     private Database database;
 
@@ -15,7 +15,7 @@ public class StorageTest implements TestContext {
     }
 
     @Override
-    public Customers getCustomers() {
+    public Customers customers() {
         Customers customers = new Customers();
         customers.setCustomerRepository(new CustomerRepositoryUsingDatabase(getDatabase()));
         customers.setCartRepository(new CartRepositoryUsingDatabase(getDatabase()));

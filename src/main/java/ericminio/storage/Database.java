@@ -26,7 +26,6 @@ public class Database {
         CallableStatement statement = connection.prepareCall(sql);
         ResultSet resultSet = statement.executeQuery();
         resultSet.next();
-
         return resultSet.getInt(1);
     }
 

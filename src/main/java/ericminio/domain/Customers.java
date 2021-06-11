@@ -20,11 +20,10 @@ public class Customers {
         cartRepository.save(customer);
     }
 
-    public Customer findByName(String name) {
+    public Customer find(String name) {
         Customer customer = customerRepository.find(name);
-        ShoppingCart shoppingCart = cartRepository.find(customer);
-        customer.setShoppingCart(shoppingCart);
-
+        Cart cart = cartRepository.find(customer);
+        customer.setCart(cart);
         return customer;
     }
 }
