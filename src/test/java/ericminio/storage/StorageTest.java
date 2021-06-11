@@ -8,19 +8,21 @@ import java.sql.DriverManager;
 
 public class StorageTest implements TestContext {
 
+    private final VisitorRepository visitorRepository;
     private Database database;
 
     public StorageTest() {
+        this.visitorRepository = new VisitorRepository(getDatabase());
         clean();
     }
 
     @Override
     public Visitor newVisitor() {
-        VisitorDao visitorDao = new VisitorDao(this.getDatabase());
-        return visitorDao.create();
+        int id = visitorRepository.createNew();
+        return visitorRepository.findBy(id);
     }
 
-    private Database getDatabase() {
+    protected Database getDatabase() {
         if (this.database == null) {
             try {
                 Class.forName("org.hsqldb.jdbcDriver");

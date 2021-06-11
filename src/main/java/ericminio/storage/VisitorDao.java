@@ -2,10 +2,6 @@ package ericminio.storage;
 
 import ericminio.ports.Visitor;
 
-import java.sql.SQLException;
-
-import static java.lang.String.format;
-
 public class VisitorDao implements Visitor {
 
     private Database database;
@@ -16,24 +12,29 @@ public class VisitorDao implements Visitor {
         this.database = database;
     }
 
-    public Visitor create() {
-        try {
-            this.id = database.selectInt("call next value for customer_id_sequence");
-            this.name = "name-" + id;
-            database.execute(format("insert into customer(id, name) values(%d, '%s')", id, name));
-            return this;
-        } catch (SQLException e) {
-            throw new RuntimeException("creation failed", e);
-        }
-    }
-
     @Override
     public int getCartSize() {
-        return new CartDao(database).of(id).size();
+        return new CartDao(database).belongingTo(this).size();
     }
 
     @Override
     public void chooses(String label) {
-        new CartDao(database).of(id).add(label);
+        new CartDao(database).belongingTo(this).add(label);
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
