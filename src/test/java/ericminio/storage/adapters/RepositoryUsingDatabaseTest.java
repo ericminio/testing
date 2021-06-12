@@ -24,7 +24,7 @@ public class RepositoryUsingDatabaseTest extends StorageTest {
     public void labelSizeLimitation() {
         try {
             Cart cart = new Cart();
-            cart.add("this too long label will be rejected");
+            cart.addItem("this too long label will be rejected");
             repositoryUsingDatabase.save(new Customer("any name") {{ setCart(cart); }});
             fail();
         }

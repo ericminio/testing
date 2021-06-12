@@ -17,7 +17,7 @@ public class JsonToCustomer {
         List<Map> items = (List<Map>) tree.get("cart");
         if (items != null) {
             for (Map item : items) {
-                cart.add((String) item.get("label"));
+                cart.addItem((String) item.get("label"));
             }
         }
         return customer;

@@ -27,7 +27,7 @@ public class Carts {
         Cart cart = new Cart();
         ResultSet resultSet = database.selectRows(format("select label from cart where customer_id = %d", customer_id));
         while (resultSet.next()) {
-            cart.add(resultSet.getString(1));
+            cart.addItem(resultSet.getString(1));
         }
         return cart;
     }

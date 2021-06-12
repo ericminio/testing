@@ -1,15 +1,30 @@
 package ericminio.storage.support;
 
-import ericminio.domain.StorageFacade;
-import ericminio.domain.support.DomainInteractions;
+import ericminio.Interactions;
+import ericminio.domain.Customer;
 import ericminio.storage.adapters.Database;
 import ericminio.storage.adapters.RepositoryUsingDatabase;
 
-public class StorageInteractions extends DomainInteractions {
+public class StorageInteractions implements Interactions {
+    private final RepositoryUsingDatabase repositoryUsingDatabase;
 
     public StorageInteractions(Database database) {
-        StorageFacade storageFacade = new StorageFacade();
-        storageFacade.setRepository(new RepositoryUsingDatabase(database));
-        this.setStorageFacade(storageFacade);
+        this.repositoryUsingDatabase = new RepositoryUsingDatabase(database);
+    }
+
+    @Override
+    public void save(Customer customer) {
+        repositoryUsingDatabase.save(customer);
+    }
+
+    @Override
+    public Customer find(String name) {
+        return repositoryUsingDatabase.find(name);
+    }
+
+    @Override
+    public void recordChoice(Customer customer, String label) {
+        customer.getCart().addItem(label);
+        repositoryUsingDatabase.save(customer);
     }
 }

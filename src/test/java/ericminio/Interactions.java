@@ -8,5 +8,5 @@ public interface Interactions {
 
     Customer find(String name);
 
-    void recordChoice(Customer alice, String label);
+    void recordChoice(Customer customer, String label);
 }

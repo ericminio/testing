@@ -30,8 +30,8 @@ public class CustomerToJsonTest {
     public void includesCartItems() {
         Customer ed = new Customer("ed");
         Cart cart = new Cart();
-        cart.add("item-1");
-        cart.add("item-2");
+        cart.addItem("item-1");
+        cart.addItem("item-2");
         ed.setCart(cart);
         String json = new CustomerToJson().please(ed);
 

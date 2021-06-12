@@ -11,15 +11,18 @@ public class Cart {
         this.items = new ArrayList<>();
     }
 
-    public void add(String label) {
-        this.items.add(label);
-    }
-
     public int size() {
         return this.items.size();
     }
 
     public String get(int i) {
         return items.get(i);
+    }
+
+    public void addItem(String label) {
+        if (size() == 3) {
+            throw new CartLimitReached();
+        }
+        items.add(label);
     }
 }
