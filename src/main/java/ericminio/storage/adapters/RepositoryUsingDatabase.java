@@ -7,7 +7,6 @@ import ericminio.storage.Repository;
 import java.sql.SQLException;
 
 public class RepositoryUsingDatabase implements Repository {
-
     private Database database;
 
     public RepositoryUsingDatabase(Database database) {
@@ -37,7 +36,4 @@ public class RepositoryUsingDatabase implements Repository {
         }
     }
 
-    public Database getDatabase() {
-        return database;
-    }
 }

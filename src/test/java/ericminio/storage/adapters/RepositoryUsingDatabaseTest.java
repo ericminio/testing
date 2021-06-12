@@ -13,11 +13,13 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 public class RepositoryUsingDatabaseTest extends StorageTest {
-    RepositoryUsingDatabase repositoryUsingDatabase;
+    private RepositoryUsingDatabase repositoryUsingDatabase;
+    private Database database;
 
     @Before
     public void sut() {
-        repositoryUsingDatabase = new RepositoryUsingDatabase(inMemoryDatabase());
+        database = inMemoryDatabase();
+        repositoryUsingDatabase = new RepositoryUsingDatabase(database);
     }
 
     @Test
@@ -39,7 +41,7 @@ public class RepositoryUsingDatabaseTest extends StorageTest {
         Customer ed = new Customer("ed");
         repositoryUsingDatabase.save(ed);
         repositoryUsingDatabase.save(ed);
-        int count = repositoryUsingDatabase.getDatabase().selectInt("select count(1) from customer");
+        int count = database.selectInt("select count(1) from customer");
 
         assertThat(count, equalTo(1));
     }
