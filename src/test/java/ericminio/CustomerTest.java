@@ -26,7 +26,7 @@ public abstract class CustomerTest {
     }
 
     @Test
-    public void canAddItemsToTheirCart() {
+    public void canAddItemsInTheCart() {
         Customer alice = please.find("alice");
         please.recordChoice(alice, "this-item");
         please.recordChoice(alice, "this-other-item");
