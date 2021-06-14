@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import ericminio.domain.Customer;
 import ericminio.domain.Repository;
 import ericminio.http.support.JsonToMapsParser;
+import ericminio.http.support.SafeHandler;
 import ericminio.http.support.Stringify;
 
 import java.io.IOException;
