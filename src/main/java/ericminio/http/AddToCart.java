@@ -3,7 +3,7 @@ package ericminio.http;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import ericminio.domain.Customer;
-import ericminio.domain.StorageFacade;
+import ericminio.domain.Repository;
 import ericminio.http.support.JsonToMapsParser;
 import ericminio.http.support.Stringify;
 
@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.Map;
 
 public class AddToCart implements HttpHandler {
-    private StorageFacade storageFacade;
+    private Repository repository;
 
-    public AddToCart(StorageFacade storageFacade) {
-        this.storageFacade = storageFacade;
+    public AddToCart(Repository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -24,8 +24,9 @@ public class AddToCart implements HttpHandler {
             Map<String, Object> fields = (Map<String, Object>) new JsonToMapsParser().parse(json);
             String name = (String) fields.get("name");
             String label = (String) fields.get("label");
-            Customer customer = storageFacade.find(name);
+            Customer customer = repository.find(name);
             customer.chooses(label);
+            repository.save(customer);
             String body = "{\"outcome\":\"success\"}";
             exchange.getResponseHeaders().add("content-type", "application/json");
             exchange.sendResponseHeaders(200, body.getBytes().length);

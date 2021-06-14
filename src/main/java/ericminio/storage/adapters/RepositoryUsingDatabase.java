@@ -2,7 +2,7 @@ package ericminio.storage.adapters;
 
 import ericminio.domain.Cart;
 import ericminio.domain.Customer;
-import ericminio.storage.Repository;
+import ericminio.domain.Repository;
 
 import java.sql.SQLException;
 

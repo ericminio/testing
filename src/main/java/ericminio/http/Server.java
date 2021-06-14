@@ -1,7 +1,7 @@
 package ericminio.http;
 
 import com.sun.net.httpserver.HttpServer;
-import ericminio.domain.StorageFacade;
+import ericminio.domain.Repository;
 
 import java.net.InetSocketAddress;
 
@@ -12,11 +12,11 @@ public class Server {
     private Save save;
     private AddToCart addToCart;
 
-    public Server(int port, StorageFacade storageFacade) {
+    public Server(int port, Repository repository) {
         this.port = port;
-        this.find = new Find(storageFacade);
-        this.save = new Save(storageFacade);
-        this.addToCart = new AddToCart(storageFacade);
+        this.find = new Find(repository);
+        this.save = new Save(repository);
+        this.addToCart = new AddToCart(repository);
     }
 
     public void start() {

@@ -3,17 +3,17 @@ package ericminio.http;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import ericminio.domain.Customer;
-import ericminio.domain.StorageFacade;
+import ericminio.domain.Repository;
 import ericminio.http.mapping.JsonToCustomer;
 import ericminio.http.support.Stringify;
 
 import java.io.IOException;
 
 public class Save implements HttpHandler {
-    private StorageFacade storageFacade;
+    private Repository repository;
 
-    public Save(StorageFacade storageFacade) {
-        this.storageFacade = storageFacade;
+    public Save(Repository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Save implements HttpHandler {
         try {
             String json = new Stringify().inputStream(exchange.getRequestBody());
             Customer customer = new JsonToCustomer().please(json);
-            storageFacade.save(customer);
+            repository.save(customer);
             String body = "{\"outcome\":\"success\"}";
             exchange.getResponseHeaders().add("content-type", "application/json");
             exchange.sendResponseHeaders(200, body.getBytes().length);

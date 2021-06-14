@@ -3,17 +3,17 @@ package ericminio.http;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import ericminio.domain.Customer;
-import ericminio.domain.StorageFacade;
+import ericminio.domain.Repository;
 import ericminio.http.mapping.CustomerToJson;
 
 import java.io.IOException;
 
 public class Find implements HttpHandler {
 
-    private StorageFacade storageFacade;
+    private Repository repository;
 
-    public Find(StorageFacade storageFacade) {
-        this.storageFacade = storageFacade;
+    public Find(Repository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Find implements HttpHandler {
         try {
             String query = exchange.getRequestURI().getQuery();
             String name = query.substring(query.indexOf("name=")+"name=".length());
-            Customer customer = storageFacade.find(name);
+            Customer customer = repository.find(name);
             String body = new CustomerToJson().please(customer);
             exchange.getResponseHeaders().add("content-type", "application/json");
             exchange.sendResponseHeaders(200, body.getBytes().length);

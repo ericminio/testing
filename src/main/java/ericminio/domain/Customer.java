@@ -3,7 +3,6 @@ package ericminio.domain;
 public class Customer {
     private String name;
     private Cart cart;
-    private StorageFacade storageFacade;
 
     public Customer(String name) {
         this.name = name;
@@ -28,10 +27,6 @@ public class Customer {
 
     public void chooses(String label) {
         this.cart.addItem(label);
-        this.storageFacade.save(this);
     }
 
-    public void setStorageFacade(StorageFacade storageFacade) {
-        this.storageFacade = storageFacade;
-    }
 }

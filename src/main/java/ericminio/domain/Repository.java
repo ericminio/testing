@@ -1,6 +1,4 @@
-package ericminio.storage;
-
-import ericminio.domain.Customer;
+package ericminio.domain;
 
 public interface Repository {
     void save(Customer customer);

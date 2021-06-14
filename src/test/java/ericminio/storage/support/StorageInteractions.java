@@ -24,7 +24,7 @@ public class StorageInteractions implements Interactions {
 
     @Override
     public void recordChoice(Customer customer, String label) {
-        customer.getCart().addItem(label);
+        customer.chooses(label);
         repositoryUsingDatabase.save(customer);
     }
 }
