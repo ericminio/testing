@@ -2,7 +2,7 @@ package ericminio.http.adapters;
 
 import com.sun.net.httpserver.HttpExchange;
 import ericminio.domain.Customer;
-import ericminio.domain.Repository;
+import ericminio.domain.ports.Repository;
 import ericminio.http.mapping.CustomerToJson;
 import ericminio.http.support.SafeHandler;
 

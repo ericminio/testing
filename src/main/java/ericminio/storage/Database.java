@@ -1,4 +1,4 @@
-package ericminio.storage.adapters;
+package ericminio.storage;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

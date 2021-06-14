@@ -2,7 +2,7 @@ package ericminio.http.support;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import ericminio.domain.Repository;
+import ericminio.domain.ports.Repository;
 
 import java.io.IOException;
 

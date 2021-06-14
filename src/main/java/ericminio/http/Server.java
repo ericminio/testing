@@ -1,7 +1,7 @@
 package ericminio.http;
 
 import com.sun.net.httpserver.HttpServer;
-import ericminio.domain.Repository;
+import ericminio.domain.ports.Repository;
 import ericminio.http.adapters.AddToCart;
 import ericminio.http.adapters.Find;
 import ericminio.http.adapters.Save;

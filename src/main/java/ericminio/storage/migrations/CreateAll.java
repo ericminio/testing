@@ -1,6 +1,6 @@
 package ericminio.storage.migrations;
 
-import ericminio.storage.adapters.Database;
+import ericminio.storage.Database;
 
 public class CreateAll {
 

@@ -1,4 +1,4 @@
-package ericminio.storage.adapters;
+package ericminio.storage;
 
 import ericminio.domain.Cart;
 

@@ -2,7 +2,7 @@ package ericminio.storage.support;
 
 import ericminio.Interactions;
 import ericminio.domain.Customer;
-import ericminio.storage.adapters.Database;
+import ericminio.storage.Database;
 import ericminio.storage.adapters.RepositoryUsingDatabase;
 
 public class StorageInteractions implements Interactions {

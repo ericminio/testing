@@ -2,7 +2,7 @@ package ericminio.storage.support;
 
 import ericminio.Interactions;
 import ericminio.Scope;
-import ericminio.storage.adapters.Database;
+import ericminio.storage.Database;
 import ericminio.storage.migrations.CreateAll;
 
 import java.sql.Connection;
