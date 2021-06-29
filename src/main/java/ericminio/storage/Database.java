@@ -14,29 +14,41 @@ public class Database {
     }
 
     public void execute(String sql) throws SQLException {
-        CallableStatement statement = connection.prepareCall(sql);
-        statement.execute();
+        execute(sql, new Object[]{});
     }
     public void executeIgnoringErrors(String sql) {
         try { execute(sql); }
         catch (Exception ignored) {}
     }
 
-    public int selectInt(String sql) throws SQLException {
-        CallableStatement statement = connection.prepareCall(sql);
+    public void execute(String sql, Object[] parameters) throws SQLException {
+        CallableStatement statement = setParameters(sql, parameters);
+        statement.execute();
+    }
+
+    public ResultSet selectRows(String sql, Object[] parameters) throws SQLException {
+        CallableStatement statement = setParameters(sql, parameters);
+        return statement.executeQuery();
+    }
+
+    public boolean exists(String sql, Object[] parameters) throws SQLException {
+        CallableStatement statement = setParameters(sql, parameters);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    }
+
+    public int selectInt(String sql, Object[] parameters) throws SQLException {
+        CallableStatement statement = setParameters(sql, parameters);
         ResultSet resultSet = statement.executeQuery();
         resultSet.next();
         return resultSet.getInt(1);
     }
 
-    public ResultSet selectRows(String sql) throws SQLException {
+    private CallableStatement setParameters(String sql, Object[] parameters) throws SQLException {
         CallableStatement statement = connection.prepareCall(sql);
-        return statement.executeQuery();
-    }
-
-    public boolean exists(String sql) throws SQLException {
-        CallableStatement statement = connection.prepareCall(sql);
-        ResultSet resultSet = statement.executeQuery();
-        return resultSet.next();
+        for (int i = 0; i < parameters.length; i++) {
+            statement.setObject(i + 1, parameters[i]);
+        }
+        return statement;
     }
 }

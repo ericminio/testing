@@ -42,7 +42,7 @@ public class RepositoryUsingDatabaseTest extends StorageTest {
         Customer ed = new Customer("ed");
         repositoryUsingDatabase.save(ed);
         repositoryUsingDatabase.save(ed);
-        int count = database.selectInt("select count(1) from customer");
+        int count = database.selectInt("select count(1) from customer", new Object[]{});
 
         assertThat(count, equalTo(1));
     }
