@@ -1,29 +1,24 @@
-package ericminio.http.adapters;
+package ericminio.http.api;
 
 import com.sun.net.httpserver.HttpExchange;
 import ericminio.domain.Customer;
 import ericminio.domain.ports.Repository;
-import ericminio.http.support.JsonToMapsParser;
+import ericminio.http.mapping.JsonToCustomer;
 import ericminio.http.support.SafeHandler;
 import ericminio.http.support.Stringify;
 
 import java.io.IOException;
-import java.util.Map;
 
-public class AddToCart extends SafeHandler {
+public class Save extends SafeHandler {
 
-    public AddToCart(Repository repository) {
+    public Save(Repository repository) {
         super(repository);
     }
 
     @Override
     public void handleSafely(HttpExchange exchange) throws IOException {
         String json = new Stringify().inputStream(exchange.getRequestBody());
-        Map<String, Object> fields = (Map<String, Object>) new JsonToMapsParser().parse(json);
-        String name = (String) fields.get("name");
-        String label = (String) fields.get("label");
-        Customer customer = repository.find(name);
-        customer.chooses(label);
+        Customer customer = new JsonToCustomer().please(json);
         repository.save(customer);
         String body = "{\"outcome\":\"success\"}";
         exchange.getResponseHeaders().add("content-type", "application/json");

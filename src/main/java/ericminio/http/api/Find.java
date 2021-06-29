@@ -1,4 +1,4 @@
-package ericminio.http.adapters;
+package ericminio.http.api;
 
 import com.sun.net.httpserver.HttpExchange;
 import ericminio.domain.Customer;

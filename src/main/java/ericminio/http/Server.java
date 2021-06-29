@@ -2,9 +2,9 @@ package ericminio.http;
 
 import com.sun.net.httpserver.HttpServer;
 import ericminio.domain.ports.Repository;
-import ericminio.http.adapters.AddToCart;
-import ericminio.http.adapters.Find;
-import ericminio.http.adapters.Save;
+import ericminio.http.api.AddToCart;
+import ericminio.http.api.Find;
+import ericminio.http.api.Save;
 
 import java.net.InetSocketAddress;
 
